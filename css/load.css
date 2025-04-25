@@ -1,0 +1,52 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+} 
+
+main{
+  display:grid;
+    grid-template-columns: .5fr .3fr .5fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "one two three"
+    "five five five" ;
+}
+img{
+  padding-top: 3%;
+  max-width: 100%;
+  max-height:100%;
+}
+#git{
+  grid-area: one;
+  animation: heart 1s infinite;
+}
+@keyframes heart {
+  0% {
+      transform: scale(.8) translate(0,0);
+  }
+  
+  50% {
+      transform: scale(.90) translate(0, 8px);
+  }
+  
+  100% {
+      transform:scale(.8);
+  }
+}
+
+#bash{
+  max-width: 38%;
+  grid-area: five;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+#github{
+  grid-area: three;
+}
