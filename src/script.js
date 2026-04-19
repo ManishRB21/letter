@@ -60,17 +60,29 @@ function createBgHeart() {
 setInterval(createBgHeart, 700);
 for (let i = 0; i < 8; i++) createBgHeart();
 
-// ── Envelope click → open flap then navigate to letter page ──
+// ── Envelope tap/click → open flap then navigate to letter page ──
 const envelopeWrapper = document.getElementById('envelopeWrapper');
 const envelopeFlap    = document.getElementById('envelopeFlap');
 const heartSeal       = document.getElementById('heartSeal');
 
-envelopeWrapper.addEventListener('click', () => {
+function openEnvelope() {
   envelopeFlap.classList.add('open');
   heartSeal.classList.add('hidden');
   spawnSparkles(envelopeWrapper);
   setTimeout(() => { window.location.href = 'letter.html'; }, 700);
-});
+}
+
+// Use touchend for iOS (faster, no 300ms delay) + click for desktop
+let touchMoved = false;
+envelopeWrapper.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
+envelopeWrapper.addEventListener('touchmove',  () => { touchMoved = true;  }, { passive: true });
+envelopeWrapper.addEventListener('touchend', (e) => {
+  if (!touchMoved) {
+    e.preventDefault(); // prevent ghost click
+    openEnvelope();
+  }
+}, { passive: false });
+envelopeWrapper.addEventListener('click', openEnvelope);
 
 // ── Sparkle burst ──
 function spawnSparkles(target) {
