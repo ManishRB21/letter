@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>A Letter For You 💌</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Background music -->
+  <audio id="bgMusic" loop>
+    <source src="lovestory.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Music toggle button -->
+  <button class="music-btn" id="musicBtn" title="Toggle music">🎵</button>
+
+  <!-- Floating hearts background -->
+  <div class="bg-hearts" id="bgHearts"></div>
+
+  <!-- Hello Kitty deco top -->
+  <div class="kitty-deco">
+    <div class="kitty-face">
+      <!-- Bow on top of right ear -->
+      <div class="kitty-bow-top">
+        <div class="bow-left"></div>
+        <div class="bow-right"></div>
+        <div class="bow-center"></div>
+      </div>
+      <div class="kitty-ear left-ear"><div class="kitty-inner-ear left-inner"></div></div>
+      <div class="kitty-ear right-ear"><div class="kitty-inner-ear right-inner"></div></div>
+      <div class="kitty-head">
+        <div class="kitty-eye left-eye"></div>
+        <div class="kitty-eye right-eye"></div>
+        <div class="kitty-nose"></div>
+        <div class="kitty-whiskers left-whiskers">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="kitty-whiskers right-whiskers">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="title">A little something for you <span>🌸</span></h1>
+  <p class="subtitle">Tap the envelope to open ✨</p>
+
+  <!-- Envelope -->
+  <div class="envelope-wrapper" id="envelopeWrapper">
+    <div class="envelope" id="envelope">
+      <!-- Envelope flap -->
+      <div class="envelope-flap" id="envelopeFlap"></div>
+      <!-- Envelope body -->
+      <div class="envelope-body">
+        <div class="envelope-left-fold"></div>
+        <div class="envelope-right-fold"></div>
+        <div class="envelope-bottom-fold"></div>
+        <div class="heart-seal" id="heartSeal">💗</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
