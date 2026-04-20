@@ -273,7 +273,6 @@
   <audio id="bgMusic" loop>
     <source src="lovestory.mp3" type="audio/mpeg" />
   </audio>
-  <button class="music-btn" id="musicBtn" title="Toggle music">🎵</button>
 
   <div class="page">
     <div class="letter-paper">
@@ -293,13 +292,14 @@
       <p class="letter-date">April 2026</p>
 
       <!-- Salutation -->
-      <p class="letter-salutation">Sonuuuuuuu,</p>
+      <p class="letter-salutation">Sonuuuuuuu 💕,</p>
 
       <!-- Body -->
       <div class="letter-body">
         <p>I know you don't react well with compliments, or even facts for that matter, so I'll write it all here so you don't have the pressure to react and so you can become the awkward mess in the comfort of your own self hehe. Although, I'd love to see you blush — you're honestly adorable.</p>
         <p>Ik we haven't had the nicest start but honestly if they made a movie on this it'd be pretty fucking good LMAO. Anyways, knowing how we turned out, I'd do it all over in a heartbeat. 💗</p>
-        <p>If the concept of love was nonexistent, your presence would have ignited a stubbornness. You are the only constant in my life, the only meaning to life, the only purpose I seek. Knowing you may be mine, yet I cling hopelessly for I know nothing else and wish to know nothing more.</p>
+        <p>If you could see yourself the way I see you, you'd never doubt how beautiful you are. </p>
+        <p>I may not be you first love but let me be the love of your life. Allow me to show you a love, you may have never known, the kind that arrives without asking. That stays even when it isn't asked to. A love that listens with patience that builds a sanctuary where your heart can finally rest. The kind of love that holds you on your worst days and celebrate on the days you forget your own worth. Let me love you in ways that feels like coming home — not loud, not fleeting, but certain, enduring, and TRUE.</p>
         <p><span class="highlight-line">I hope you find this, and when you do — I hope you know it's for you. 🌸</span></p>
         <p>In the most selfish way — I wish no one admires you the way I do. 💕</p>
       </div>
@@ -317,7 +317,7 @@
 
     </div>
 
-    <button class="back-btn" onclick="window.location.href='index.html'">← back to envelope</button>
+    <button class="back-btn" id="backBtn">← back to envelope</button>
   </div>
 
   <script>
@@ -344,29 +344,36 @@
       p.style.animationDelay = (0.9 + i * 0.3) + 's';
     });
 
-    // ── Music ──
-    const bgMusic  = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    let started = false;
+    // ── Music — auto-play, no button ──
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 1.0;
 
     function tryPlay() {
-      if (started) return;
-      bgMusic.volume = 1.0;
-      bgMusic.play().then(() => { started = true; musicBtn.classList.add('playing'); }).catch(() => {});
+      bgMusic.play().then(() => {
+        sessionStorage.setItem('musicPlaying', 'true');
+      }).catch(() => {});
     }
 
-    bgMusic.play().then(() => { started = true; musicBtn.classList.add('playing'); }).catch(() => {});
+    tryPlay();
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+    document.addEventListener('click',      tryPlay, { once: true, passive: true });
 
-    ['touchstart', 'click'].forEach(e => document.addEventListener(e, tryPlay, { once: true, passive: true }));
-
-    musicBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (bgMusic.paused) { bgMusic.play(); musicBtn.classList.add('playing'); }
-      else { bgMusic.pause(); musicBtn.classList.remove('playing'); }
+    window.addEventListener('pageshow', () => {
+      if (sessionStorage.getItem('musicPlaying') === 'true') tryPlay();
     });
 
-    // Prevent double-tap zoom
-    document.addEventListener('touchend', e => { if (e.target !== musicBtn) e.preventDefault(); }, { passive: false });
+    // ── Back button — touch-friendly ──
+    const backBtn = document.getElementById('backBtn');
+    let backTouchMoved = false;
+    backBtn.addEventListener('touchstart', () => { backTouchMoved = false; }, { passive: true });
+    backBtn.addEventListener('touchmove',  () => { backTouchMoved = true;  }, { passive: true });
+    backBtn.addEventListener('touchend', (e) => {
+      if (!backTouchMoved) {
+        e.preventDefault();
+        window.location.href = 'index.html';
+      }
+    }, { passive: false });
+    backBtn.addEventListener('click', () => { window.location.href = 'index.html'; });
   </script>
 </body>
 </html>
