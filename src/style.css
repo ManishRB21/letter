@@ -506,41 +506,6 @@ body {
   100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.3); }
 }
 
-/* ── Music toggle button ── */
-.music-btn {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 100;
-  background: var(--white);
-  border: 2.5px solid var(--accent);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 4px 12px var(--shadow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.music-btn:active {
-  transform: scale(0.9);
-}
-
-.music-btn.playing {
-  animation: musicPulse 1.2s ease-in-out infinite;
-  background: var(--pink-light);
-}
-
-@keyframes musicPulse {
-  0%, 100% { box-shadow: 0 4px 12px var(--shadow); }
-  50%       { box-shadow: 0 4px 22px rgba(255,77,109,0.45); }
-}
-
 /* ── Mobile polish for iPhone 12 (390×844) ── */
 @media (max-width: 430px) {
   body {
