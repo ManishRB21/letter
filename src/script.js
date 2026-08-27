@@ -1,28 +1,13 @@
-// ── Background music (auto-play, no button, persists across pages) ──
+// ── Background music ──
 const bgMusic = document.getElementById('bgMusic');
 bgMusic.volume = 1.0;
 
-function tryPlay() {
-  bgMusic.play().then(() => {
-    sessionStorage.setItem('musicPlaying', 'true');
-  }).catch(() => {});
-}
-
-// Try immediately
-tryPlay();
-
-// Also try on first touch (iOS blocks autoplay until interaction)
-document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
-document.addEventListener('click',      tryPlay, { once: true, passive: true });
-
 // ── Reset envelope when user navigates back (iOS bfcache) ──
-window.addEventListener('pageshow', (e) => {
+window.addEventListener('pageshow', () => {
   const flap = document.getElementById('envelopeFlap');
   const seal = document.getElementById('heartSeal');
   if (flap) flap.classList.remove('open');
   if (seal) seal.classList.remove('hidden');
-  // Resume music if it was playing
-  if (sessionStorage.getItem('musicPlaying') === 'true') tryPlay();
 });
 
 // ── Floating background hearts ──

@@ -151,7 +151,7 @@
       color: var(--ink);
       margin-bottom: 0;
       padding-bottom: 0;
-      text-align: left;
+      text-align: center;
       opacity: 0;
       transform: translateY(8px);
     }
@@ -289,17 +289,17 @@
       </div>
 
       <!-- Date -->
-      <p class="letter-date">April 2026</p>
+    <p class="letter-date">28th August 2026</p>
 
       <!-- Salutation -->
-      <p class="letter-salutation">Sonuuuuuuu 💕,</p>
+      <p class="letter-salutation">Dear Niharika 💕,</p>
 
       <!-- Body -->
       <div class="letter-body">
         <p>I know you don't react well with compliments, or even facts for that matter, so I'll write it all here so you don't have the pressure to react and so you can become the awkward mess in the comfort of your own self hehe. Although, I'd love to see you blush — you're honestly adorable.</p>
         <p>Ik we haven't had the nicest start but honestly if they made a movie on this it'd be pretty fucking good LMAO. Anyways, knowing how we turned out, I'd do it all over in a heartbeat. 💗</p>
-        <p>If you could see yourself the way I see you, you'd never doubt how beautiful you are. </p>
-        <p>I may not be you first love but let me be the love of your life. Allow me to show you a love, you may have never known, the kind that arrives without asking. That stays even when it isn't asked to. A love that listens with patience that builds a sanctuary where your heart can finally rest. The kind of love that holds you on your worst days and celebrate on the days you forget your own worth. Let me love you in ways that feels like coming home — not loud, not fleeting, but certain, enduring, and TRUE.</p>
+        <p>If you could see yourself the way I see you, you'd never doubt how beautiful I find you. </p>
+        <p>I'm not going to pretend I have it all figured out. I don't know what this becomes. But I do know that every conversation with you leaves me wanting the next one. You're the kind of person I find myself thinking about in the middle of doing something completely unrelated — and I've stopped trying to fight that. But I want you to know that I show up every day not because I expect something in return, but because talking to you genuinely feels like the best part of my day.</p>
         <p><span class="highlight-line">I hope you find this, and when you do — I hope you know it's for you. 🌸</span></p>
         <p>In the most selfish way — I wish no one admires you the way I do. 💕</p>
       </div>
@@ -344,23 +344,10 @@
       p.style.animationDelay = (0.9 + i * 0.3) + 's';
     });
 
-    // ── Music — auto-play, no button ──
+    // ── Music ──
     const bgMusic = document.getElementById('bgMusic');
     bgMusic.volume = 1.0;
-
-    function tryPlay() {
-      bgMusic.play().then(() => {
-        sessionStorage.setItem('musicPlaying', 'true');
-      }).catch(() => {});
-    }
-
-    tryPlay();
-    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
-    document.addEventListener('click',      tryPlay, { once: true, passive: true });
-
-    window.addEventListener('pageshow', () => {
-      if (sessionStorage.getItem('musicPlaying') === 'true') tryPlay();
-    });
+    bgMusic.play().catch(() => {});
 
     // ── Back button — touch-friendly ──
     const backBtn = document.getElementById('backBtn');
