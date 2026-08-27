@@ -49,6 +49,7 @@
       flex-direction: column;
       align-items: center;
       padding: 36px 20px 60px;
+      padding-top: 80px;
     }
 
     /* ── Letter paper ── */
@@ -269,11 +270,6 @@
   <!-- Floating background petals -->
   <div class="bg-petals" id="bgPetals"></div>
 
-  <!-- Music carries over -->
-  <audio id="bgMusic" loop>
-    <source src="lovestory.mp3" type="audio/mpeg" />
-  </audio>
-
   <div class="page">
     <div class="letter-paper">
 
@@ -343,21 +339,6 @@
       p.classList.add('anim');
       p.style.animationDelay = (0.9 + i * 0.3) + 's';
     });
-
-    // ── Music ──
-    const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 1.0;
-    
-    function startMusic() {
-      bgMusic.play().catch(() => {});
-    }
-    
-    // Try immediately (works on desktop)
-    startMusic();
-    
-    // Mobile needs interaction on this page
-    document.addEventListener('touchstart', startMusic, { once: true, passive: true });
-    document.addEventListener('click', startMusic, { once: true, passive: true });
 
     // ── Back button — touch-friendly ──
     const backBtn = document.getElementById('backBtn');
