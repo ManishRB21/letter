@@ -347,7 +347,17 @@
     // ── Music ──
     const bgMusic = document.getElementById('bgMusic');
     bgMusic.volume = 1.0;
-    bgMusic.play().catch(() => {});
+    
+    function startMusic() {
+      bgMusic.play().catch(() => {});
+    }
+    
+    // Try immediately (works on desktop)
+    startMusic();
+    
+    // Mobile needs interaction on this page
+    document.addEventListener('touchstart', startMusic, { once: true, passive: true });
+    document.addEventListener('click', startMusic, { once: true, passive: true });
 
     // ── Back button — touch-friendly ──
     const backBtn = document.getElementById('backBtn');
